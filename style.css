@@ -302,15 +302,23 @@ body {
         max-width: 52%;
     }
 
+    /* YES and NO buttons on phones */
     .buttons {
-        gap: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+        width: 100%;
+        margin: 4px auto 0;
     }
 
     .btn,
     .yes-btn,
     .no-btn {
-        width: clamp(72px, 23vw, 92px);
+        width: clamp(65px, 20vw, 85px);
         max-width: 35vw;
+        height: auto;
     }
 
     .final-text {
