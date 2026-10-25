@@ -1,66 +1,119 @@
+/* GENERAL SETTINGS */
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
+
     background-image: url("heart-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     font-family: "Pixelify Sans", sans-serif;
 }
 
-/* Envelope Screen */
+/* ENVELOPE SCREEN */
 #envelope-container {
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
+    width: 100%;
+    padding: 20px;
+}
+
+#envelope {
+    width: clamp(130px, 22vw, 200px);
+    max-width: 75vw;
+    height: auto;
+
+    animation: pulse 1.5s infinite;
+    cursor: pointer;
 }
 
 @keyframes pulse {
     0% {
-        transform:scale(1);
+        transform: scale(1);
     }
+
     50% {
-        transform: scale(1.1);
+        transform: scale(1.06);
     }
+
     100% {
         transform: scale(1);
     }
 }
 
-#envelope{
-    width: 200px;
-    animation: pulse 1.5s infinite;
-    cursor: pointer;
+/* ENVELOPE TEXT */
+#envelope-container p {
+    font-size: clamp(20px, 4vw, 32px);
+    margin-top: 12px;
 }
 
-#letter-container{
+/* LETTER SCREEN */
+#letter-container {
     display: none;
-    position:fixed;
+    position: fixed;
     inset: 0;
+
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+
     justify-content: center;
     align-items: center;
+
+    padding: 12px;
+    overflow: auto;
 }
 
-.letter-window{
-    width: 90vw;
-    max-width: 800px;
-    aspect-ratio: 3/2;
-    padding: 20px 20px 0 20px;
+/* LETTER WINDOW */
+.letter-window {
+    width: min(92vw, 760px);
+    height: min(82vh, 510px);
+    height: min(82dvh, 510px);
+
+    min-height: 350px;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
+    /* Align content inside the checkerboard area */
+    justify-content: flex-start;
     align-items: center;
+
     text-align: center;
+    position: relative;
+
+    /* Move content below the decorative title bar */
+    padding: clamp(140px, 24vw, 185px) 24px 20px;
+
     background-image: url("window.png");
-    background-size: contain;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 12px;
-    gap: 1px;
-    padding-top: 180px;
 
-    transform: scale(1.2);
+    border-radius: 12px;
+    gap: 8px;
+
+    transform: scale(0.9);
     opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
+
+    transition:
+        transform 0.6s ease,
+        opacity 0.6s ease;
 }
 
 .letter-window.open {
@@ -68,72 +121,240 @@ body {
     opacity: 1;
 }
 
-h1 {
-    font-size: 30px;
-    margin:0;
+/* LETTER HEADING */
+#letter-title {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0 auto 8px;
+
+    text-alin: center;
+    font-size: clamp(18px, 3vw, 30px);
+    line-height: 1.3;
+
+    overflow-wrap: break-word;
+    position: relative;
+    z-index: 2;
 }
 
-p {
-    font-size: 40px;
-}
-
-/* Cat */
-
+/* CAT IMAGE */
 .cat {
-    width: 250px;
-    margin: 10px 0;
+    display: block;
+
+    width: clamp(110px, 23vw, 190px);
+    max-width: 60%;
+    max-height: 25%;
+
+    object-fit: contain;
+    object-position: center;  
+    margin: 4px auto;
+
     transition: width 0.4s ease;
 }
 
 .letter-window.final .cat {
-    width: 180px;
+    width: clamp(100px, 17vw, 160px);
+    max-width: 55%;
 }
 
-/* buttons */
+/* BUTTONS */
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: clamp(12px, 3vw, 28px);
+
+    position: relative;
+    max-width: 100%;
+    margin: 4px auto 0;
+}
+
+.no-wrapper {
     position: relative;
 }
 
-.no-wrapper{
-    position:relative;
-}
-
-.btn {
-    width: 120px;
-    cursor: pointer;
-    user-select: none;
-}
-
+.btn,
 .yes-btn,
 .no-btn {
-width: 120px;
-height: auto;
-display: inline-block;
+    width: clamp(75px, 13vw, 115px);
+    max-width: 35vw;
+
+    height: auto;
+    display: block;
+
+    object-fit: contain;
+    user-select: none;
 }
 
 .yes-btn {
     position: relative;
     z-index: 2;
+
     transform-origin: center center;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .no-btn {
-    z-index: 1;
     position: relative;
+    z-index: 1;
+
     transition: transform 0.15s ease;
     cursor: default;
 }
 
-.final-text{
-    font-size: 22px;
-    line-height: 1.4;
+/* FINAL MESSAGE */
+.final-text {
+    display: block;
+
+    width: 90%;
+    max-width: 650px;
+
+    margin: 10px auto 0;
+    padding: 10px 14px;
+
+    font-size: clamp(13px, 2.5vw, 22px);
+    line-height: 1.5;
+
     text-align: center;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: rgba(255,240,240,0.5);
+    overflow-wrap: break-word;
+
+    background-color: rgba(255, 240, 240, 0.8);
     border-radius: 12px;
-}  
+
+    box-sizing: border-box;
+}
+
+/* LAPTOPS AND SMALLER SCREENS */
+@media (max-width: 768px) {
+    .letter-window {
+        width: 94vw;
+        height: min(78vh, 470px);
+        height: min(78dvh, 470px);
+
+        min-height: 330px;
+
+        padding: 65px 18px 16px;
+        gap: 6px;
+    }
+
+    #letter-title {
+        font-size: clamp(18px, 4vw, 25px);
+    }
+
+    .cat {
+        width: clamp(110px, 27vw, 175px);
+        max-height: 29%;
+    }
+
+    .letter-window.final .cat {
+        width: clamp(95px, 23vw, 145px);
+    }
+
+    .btn,
+    .yes-btn,
+    .no-btn {
+        width: clamp(75px, 16vw, 105px);
+    }
+
+    .final-text {
+        font-size: clamp(14px, 3vw, 19px);
+        padding: 7px 10px;
+    }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+    #letter-container {
+        padding: 8px;
+    }
+
+    .letter-window {
+        width: 96vw;
+
+        height: min(74vh, 440px);
+        height: min(74dvh, 440px);
+
+        min-height: 310px;
+
+        padding: 29vw 12px 12px;
+        gap: 5px;
+    }
+
+    #letter-title {
+        font-size: clamp(17px, 5vw, 22px);
+        line-height: 1.25;
+    }
+
+    .cat {
+        width: clamp(100px, 32vw, 145px);
+        max-width: 60%;
+        max-height: 27%;
+
+        margin: 3px 0;
+    }
+
+    .letter-window.final .cat {
+        width: clamp(85px, 27vw, 120px);
+        max-width: 52%;
+    }
+
+    .buttons {
+        gap: 14px;
+    }
+
+    .btn,
+    .yes-btn,
+    .no-btn {
+        width: clamp(72px, 23vw, 92px);
+        max-width: 35vw;
+    }
+
+    .final-text {
+        font-size: 14px;
+        line-height: 1.35;
+        padding: 6px 8px;
+    }
+
+    #envelope {
+        width: 150px;
+    }
+
+    #envelope-container p {
+        font-size: 23px;
+    }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 360px) {
+    .letter-window {
+        padding: 28vw 8px 10px;
+        gap: 4px;
+    }
+
+    #letter-title {
+        font-size: 16px;
+    }
+
+    .final-text {
+        width: 94%;
+        font-size:13px;
+        padding: 6px;
+    }
+}    
+    .cat {
+        width: 105px;
+    }
+
+    .btn,
+    .yes-btn,
+    .no-btn {
+        width: 72px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+}
