@@ -279,7 +279,8 @@ body {
 
         min-height: 310px;
 
-        padding: 29vw 12px 12px;
+        /* Move the question below the decorative header */
+        padding: 34vw 12px 12px;
         gap: 5px;
     }
 
@@ -330,22 +331,24 @@ body {
 /* EXTRA SMALL PHONES */
 @media (max-width: 360px) {
     .letter-window {
-        padding: 28vw 8px 10px;
+        padding: 34vw 8px 10px;
         gap: 4px;
     }
 
     #letter-title {
         font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .cat {
+        width: 105px;
+        max-width: 60%;
     }
 
     .final-text {
         width: 94%;
-        font-size:13px;
+        font-size: 13px;
         padding: 6px;
-    }
-}    
-    .cat {
-        width: 105px;
     }
 
     .btn,
